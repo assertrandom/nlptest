@@ -6,6 +6,7 @@ import java.util.*;
 import org.apache.commons.math3.linear.*;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.*;
 import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.index.*;
@@ -32,8 +33,8 @@ public class CosineDocumentSimilarity {
 
     Directory createIndex(String s1, String s2) throws IOException {
         Directory directory = new RAMDirectory();
-        Analyzer analyzer = new SimpleAnalyzer(Version.LUCENE_CURRENT);
-        IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_CURRENT,
+        Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_47);
+        IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_47,
                 analyzer);
         IndexWriter writer = new IndexWriter(directory, iwc);
         addDocument(writer, s1);
